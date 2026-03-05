@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nyanza Pearl Lodge — Kisumu, Kenya</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f7f5f0;
+      --deep: #0b2a35;
+      --teal: #1a6b73;
+      --teal-light: #2a9aa6;
+      --teal-pale: #e0f4f6;
+      --sand: #c8a96e;
+      --sand-light: #f2e8d5;
+      --text: #1a2e35;
+      --muted: #6b8a91;
+      --white: #ffffff;
+      --heading: 'Cormorant Garamond', Georgia, serif;
+      --body: 'Jost', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--body);
+      font-weight: 300;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.5rem 5vw;
+      transition: background 0.4s, padding 0.4s, box-shadow 0.4s;
+    }
+    nav.scrolled {
+      background: rgba(247,245,240,0.95);
+      backdrop-filter: blur(12px);
+      padding: 1rem 5vw;
+      box-shadow: 0 1px 0 rgba(0,0,0,0.06);
+    }
+    .nav-logo {
+      font-family: var(--heading);
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--white);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: color 0.4s;
+    }
+    nav.scrolled .nav-logo { color: var(--deep); }
+    .nav-logo span { color: var(--sand); }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.78rem; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    nav.scrolled .nav-links a { color: var(--muted); }
+    .nav-links a:hover { color: var(--sand) !important; }
+    .nav-book {
+      font-family: var(--body);
+      font-size: 0.78rem; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.6rem 1.5rem;
+      border: 1px solid rgba(255,255,255,0.5);
+      color: var(--white);
+      text-decoration: none;
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+    nav.scrolled .nav-book {
+      border-color: var(--teal);
+      color: var(--teal);
+    }
+    .nav-book:hover {
+      background: var(--sand) !important;
+      border-color: var(--sand) !important;
+      color: var(--white) !important;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      height: 100vh; min-height: 650px;
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: flex-start;
+      padding: 0 5vw;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(to bottom, rgba(11,42,53,0.55) 0%, rgba(11,42,53,0.2) 50%, rgba(11,42,53,0.7) 100%),
+        linear-gradient(135deg, #0b2a35 0%, #1a6b73 40%, #2a9aa6 70%, #0d4a5c 100%);
+    }
+    /* Animated water ripple effect */
+    .hero-water {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 40%;
+      background: linear-gradient(to top, rgba(26,107,115,0.4), transparent);
+    }
+    .wave {
+      position: absolute; left: -50%; width: 200%;
+      background: rgba(255,255,255,0.04);
+      border-radius: 50%;
+    }
+    .wave-1 { height: 120px; bottom: 10%; animation: wave 7s ease-in-out infinite; }
+    .wave-2 { height: 80px; bottom: 5%; animation: wave 9s ease-in-out infinite reverse; opacity: 0.6; }
+    .wave-3 { height: 60px; bottom: 0%; animation: wave 11s ease-in-out infinite; opacity: 0.4; }
+    @keyframes wave {
+      0%, 100% { transform: translateX(0) scaleY(1); }
+      50% { transform: translateX(5%) scaleY(1.1); }
+    }
+
+    /* floating light particles */
+    .particles { position: absolute; inset: 0; overflow: hidden; }
+    .particle {
+      position: absolute;
+      width: 2px; height: 2px;
+      background: rgba(200,169,110,0.6);
+      border-radius: 50%;
+      animation: drift linear infinite;
+    }
+    @keyframes drift {
+      0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translateY(-10vh) translateX(20px); opacity: 0; }
+    }
+
+    .hero-eyebrow {
+      font-size: 0.72rem; font-weight: 500;
+      letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--sand);
+      margin-bottom: 1.5rem;
+      opacity: 0; animation: fadeUp 0.8s 0.3s forwards;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .hero-eyebrow::before {
+      content: ''; width: 40px; height: 1px;
+      background: var(--sand);
+    }
+    .hero-title {
+      font-family: var(--heading);
+      font-size: clamp(3.5rem, 8vw, 8rem);
+      font-weight: 300;
+      line-height: 1;
+      color: var(--white);
+      letter-spacing: -0.01em;
+      max-width: 14ch;
+      opacity: 0; animation: fadeUp 0.9s 0.45s forwards;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: rgba(255,255,255,0.6);
+      display: block;
+    }
+    .hero-sub {
+      font-size: 1rem; font-weight: 300;
+      color: rgba(255,255,255,0.7);
+      max-width: 38ch;
+      margin-top: 1.5rem; margin-bottom: 2.5rem;
+      line-height: 1.7;
+      opacity: 0; animation: fadeUp 0.9s 0.6s forwards;
+    }
+    .hero-ctas {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      opacity: 0; animation: fadeUp 0.9s 0.75s forwards;
+    }
+    .btn-gold {
+      font-family: var(--body);
+      font-size: 0.8rem; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 1rem 2.5rem;
+      background: var(--sand);
+      color: var(--white);
+      text-decoration: none;
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+    .btn-gold:hover { background: #b8935a; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(200,169,110,0.35); }
+    .btn-ghost {
+      font-family: var(--body);
+      font-size: 0.8rem; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 1rem 2.5rem;
+      background: transparent;
+      color: var(--white);
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.4);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+    .btn-ghost:hover { border-color: var(--white); background: rgba(255,255,255,0.08); }
+
+    /* booking bar */
+    .booking-bar {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: var(--white);
+      display: flex; align-items: stretch;
+      box-shadow: 0 -4px 40px rgba(0,0,0,0.15);
+    }
+    .booking-field {
+      flex: 1;
+      padding: 1.5rem 2rem;
+      border-right: 1px solid #e8e4dc;
+      display: flex; flex-direction: column; gap: 0.3rem;
+    }
+    .booking-field:last-of-type { border-right: none; }
+    .booking-field label {
+      font-size: 0.65rem; font-weight: 600;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--muted);
+    }
+    .booking-field input, .booking-field select {
+      font-family: var(--body);
+      font-size: 0.95rem; font-weight: 400;
+      color: var(--text);
+      border: none; outline: none;
+      background: transparent;
+      cursor: pointer;
+    }
+    .booking-field select option { color: var(--text); }
+    .booking-btn {
+      padding: 0 2.5rem;
+      background: var(--teal);
+      color: var(--white);
+      font-family: var(--body);
+      font-size: 0.8rem; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      border: none; cursor: pointer;
+      transition: background 0.3s;
+      white-space: nowrap;
+    }
+    .booking-btn:hover { background: var(--deep); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(25px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 7rem 5vw; }
+    .eyebrow {
+      font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--teal-light);
+      margin-bottom: 1rem;
+      display: flex; align-items: center; gap: 0.8rem;
+    }
+    .eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--teal-light); }
+    h2.section-title {
+      font-family: var(--heading);
+      font-size: clamp(2.2rem, 4vw, 3.8rem);
+      font-weight: 300;
+      letter-spacing: -0.01em;
+      line-height: 1.1;
+      color: var(--deep);
+    }
+    h2.section-title em { font-style: italic; color: var(--teal); }
+
+    /* ── ABOUT ── */
+    .about {
+      background: var(--white);
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 0; padding: 0;
+    }
+    .about-visual {
+      background: linear-gradient(135deg, #0b2a35, #1a6b73, #2a9aa6);
+      position: relative; min-height: 550px;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    .about-visual-inner {
+      text-align: center; color: white; padding: 3rem;
+      position: relative; z-index: 2;
+    }
+    .about-visual-icon { font-size: 5rem; margin-bottom: 1.5rem; display: block; }
+    .about-visual-quote {
+      font-family: var(--heading);
+      font-size: 1.6rem; font-style: italic;
+      font-weight: 300; line-height: 1.4;
+      color: rgba(255,255,255,0.9);
+    }
+    .about-visual-attr {
+      font-size: 0.72rem; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--sand);
+      margin-top: 1rem;
+    }
+    .about-visual::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at 30% 70%, rgba(200,169,110,0.15), transparent 60%);
+    }
+    .about-content {
+      padding: 6rem 5rem;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .about-content p {
+      color: var(--muted);
+      font-size: 1rem; line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+    .about-content p strong { color: var(--text); font-weight: 500; }
+    .about-stats {
+      display: flex; gap: 3rem;
+      margin-top: 2.5rem; padding-top: 2.5rem;
+      border-top: 1px solid #e8e4dc;
+    }
+    .about-stat-num {
+      font-family: var(--heading);
+      font-size: 2.8rem; font-weight: 300;
+      color: var(--teal); line-height: 1;
+    }
+    .about-stat-label {
+      font-size: 0.72rem; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--muted); margin-top: 0.3rem;
+    }
+
+    /* ── ROOMS ── */
+    .rooms { background: var(--bg); }
+    .rooms-header {
+      display: flex; justify-content: space-between;
+      align-items: flex-end; margin-bottom: 4rem;
+    }
+    .rooms-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 1.5rem;
+    }
+    .room-card {
+      position: relative; overflow: hidden;
+      border-radius: 4px;
+      cursor: pointer;
+      background: var(--deep);
+    }
+    .room-card:first-child { grid-row: span 2; }
+    .room-visual {
+      width: 100%; padding-bottom: 75%;
+      position: relative; overflow: hidden;
+    }
+    .room-card:first-child .room-visual { padding-bottom: 0; height: 100%; min-height: 500px; }
+    .room-bg {
+      position: absolute; inset: 0;
+      transition: transform 0.5s ease;
+    }
+    .room-card:hover .room-bg { transform: scale(1.05); }
+    .room-bg-1 { background: linear-gradient(160deg, #0b4a5c 0%, #1a8a96 50%, #0d6575 100%); }
+    .room-bg-2 { background: linear-gradient(160deg, #1a2e35 0%, #2a6b73 100%); }
+    .room-bg-3 { background: linear-gradient(160deg, #0b3545 0%, #1a7a86 100%); }
+    .room-bg-4 { background: linear-gradient(160deg, #162535 0%, #2a5a6a 100%); }
+    .room-bg-5 { background: linear-gradient(160deg, #0b2a35 0%, #1a5a66 100%); }
+    .room-emoji {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 4rem; opacity: 0.35;
+    }
+    .room-card:first-child .room-emoji { font-size: 7rem; }
+    .room-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(11,42,53,0.9) 0%, rgba(11,42,53,0.1) 60%);
+    }
+    .room-info {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 1.75rem;
+    }
+    .room-type {
+      font-size: 0.65rem; font-weight: 600;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--sand); margin-bottom: 0.5rem;
+    }
+    .room-name {
+      font-family: var(--heading);
+      font-size: 1.4rem; font-weight: 400;
+      color: var(--white); margin-bottom: 0.5rem;
+      line-height: 1.2;
+    }
+    .room-card:first-child .room-name { font-size: 2rem; }
+    .room-price {
+      font-size: 0.85rem; color: rgba(255,255,255,0.6);
+    }
+    .room-price strong { color: var(--white); font-weight: 500; font-size: 1rem; }
+
+    /* ── AMENITIES ── */
+    .amenities { background: var(--deep); }
+    .amenities .eyebrow { color: var(--sand); }
+    .amenities .eyebrow::before { background: var(--sand); }
+    .amenities h2.section-title { color: var(--white); }
+    .amenities h2.section-title em { color: var(--teal-light); }
+    .amenities-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2px;
+      margin-top: 4rem;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .amenity-item {
+      padding: 2.5rem 2rem;
+      border: 1px solid rgba(255,255,255,0.04);
+      background: rgba(255,255,255,0.03);
+      transition: background 0.3s;
+    }
+    .amenity-item:hover { background: rgba(42,154,166,0.1); }
+    .amenity-icon { font-size: 2rem; margin-bottom: 1rem; display: block; }
+    .amenity-name {
+      font-family: var(--heading);
+      font-size: 1.15rem; font-weight: 400;
+      color: var(--white); margin-bottom: 0.5rem;
+    }
+    .amenity-desc {
+      font-size: 0.85rem; color: rgba(255,255,255,0.4);
+      line-height: 1.6;
+    }
+
+    /* ── EXPERIENCE / ACTIVITIES ── */
+    .experiences { background: var(--sand-light); }
+    .exp-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 2rem; margin-top: 4rem;
+    }
+    .exp-card {
+      background: var(--white);
+      border-radius: 4px;
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .exp-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+    }
+    .exp-visual {
+      height: 200px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 4rem;
+      position: relative;
+    }
+    .exp-v1 { background: linear-gradient(135deg, #0b4a5c, #1a9aa6); }
+    .exp-v2 { background: linear-gradient(135deg, #1a4535, #2a8a5a); }
+    .exp-v3 { background: linear-gradient(135deg, #3a2a0b, #8a6a1a); }
+    .exp-body { padding: 1.75rem; }
+    .exp-name {
+      font-family: var(--heading);
+      font-size: 1.3rem; font-weight: 400;
+      color: var(--deep); margin-bottom: 0.75rem;
+    }
+    .exp-desc {
+      font-size: 0.88rem; color: var(--muted);
+      line-height: 1.7; margin-bottom: 1.25rem;
+    }
+    .exp-tag {
+      font-size: 0.7rem; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--teal); padding: 0.3rem 0.75rem;
+      border: 1px solid var(--teal-pale);
+      border-radius: 2px;
+      background: var(--teal-pale);
+    }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials { background: var(--white); }
+    .testimonials-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 2rem; margin-top: 4rem;
+    }
+    .testimonial-card {
+      padding: 2.5rem;
+      background: var(--bg);
+      border-radius: 4px;
+      position: relative;
+    }
+    .testimonial-card::before {
+      content: '"';
+      font-family: var(--heading);
+      font-size: 6rem; line-height: 0.8;
+      color: var(--teal-pale);
+      position: absolute; top: 1.5rem; right: 2rem;
+    }
+    .testimonial-text {
+      font-family: var(--heading);
+      font-size: 1.05rem; font-style: italic;
+      font-weight: 300; color: var(--text);
+      line-height: 1.7; margin-bottom: 1.5rem;
+    }
+    .testimonial-author {
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .testimonial-avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--teal);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+    }
+    .testimonial-name {
+      font-size: 0.82rem; font-weight: 500;
+      color: var(--text);
+    }
+    .testimonial-origin {
+      font-size: 0.75rem; color: var(--muted);
+    }
+    .stars { color: var(--sand); font-size: 0.85rem; margin-bottom: 1rem; }
+
+    /* ── LOCATION ── */
+    .location-section {
+      background: var(--deep);
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 0; padding: 0;
+    }
+    .location-map {
+      background: linear-gradient(135deg, #0b3545, #1a8a96, #0d5a6a);
+      min-height: 500px;
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .map-graphic {
+      text-align: center; color: white; z-index: 2; position: relative;
+    }
+    .map-pin { font-size: 4rem; animation: bounce 2s ease-in-out infinite; }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    .map-label {
+      font-family: var(--heading);
+      font-size: 1.4rem; margin-top: 1rem;
+      font-style: italic;
+    }
+    .map-sublabel { font-size: 0.8rem; color: rgba(255,255,255,0.5); margin-top: 0.3rem; letter-spacing: 0.1em; text-transform: uppercase; }
+    .location-content {
+      padding: 6rem 5rem;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .location-content .eyebrow { color: var(--sand); }
+    .location-content .eyebrow::before { background: var(--sand); }
+    .location-content h2 { color: var(--white); }
+    .location-content h2 em { color: var(--teal-light); }
+    .location-content p {
+      color: rgba(255,255,255,0.55);
+      font-size: 1rem; line-height: 1.8;
+      margin-top: 1.5rem; margin-bottom: 2.5rem;
+    }
+    .directions-list { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
+    .directions-list li {
+      display: flex; align-items: flex-start; gap: 1rem;
+      font-size: 0.9rem; color: rgba(255,255,255,0.6);
+    }
+    .dir-icon {
+      width: 36px; height: 36px; flex-shrink: 0;
+      background: rgba(42,154,166,0.2);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+    }
+    .dir-text strong { color: var(--white); display: block; font-weight: 500; font-size: 0.85rem; }
+
+    /* ── CONTACT ── */
+    .contact-section { background: var(--bg); }
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1.5fr;
+      gap: 6rem; margin-top: 4rem; align-items: start;
+    }
+    .contact-details { display: flex; flex-direction: column; gap: 2rem; }
+    .contact-item {
+      display: flex; gap: 1.25rem; align-items: flex-start;
+    }
+    .contact-icon {
+      width: 46px; height: 46px; flex-shrink: 0;
+      background: var(--teal-pale);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+    }
+    .contact-item-label {
+      font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--teal); margin-bottom: 0.25rem;
+    }
+    .contact-item-value {
+      font-size: 0.95rem; color: var(--text);
+    }
+    .contact-form { display: flex; flex-direction: column; gap: 1.25rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    .form-field { display: flex; flex-direction: column; gap: 0.4rem; }
+    .form-label {
+      font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--muted);
+    }
+    .form-input, .form-textarea, .form-select {
+      font-family: var(--body);
+      font-size: 0.92rem; font-weight: 300;
+      padding: 0.85rem 1.1rem;
+      background: var(--white);
+      border: 1px solid #ddd8ce;
+      border-radius: 2px;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+    .form-input:focus, .form-textarea:focus, .form-select:focus { border-color: var(--teal); }
+    .form-textarea { resize: vertical; min-height: 120px; }
+    .form-submit {
+      font-family: var(--body);
+      font-size: 0.8rem; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 1rem 2.5rem;
+      background: var(--teal);
+      color: var(--white);
+      border: none; cursor: pointer;
+      border-radius: 2px;
+      transition: all 0.3s;
+      align-self: flex-start;
+    }
+    .form-submit:hover { background: var(--deep); transform: translateY(-2px); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--deep);
+      padding: 4rem 5vw 2rem;
+    }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 4rem; padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .footer-brand .logo {
+      font-family: var(--heading);
+      font-size: 1.5rem; font-weight: 600;
+      color: var(--white); margin-bottom: 1rem;
+    }
+    .footer-brand .logo span { color: var(--sand); }
+    .footer-brand p {
+      font-size: 0.88rem; color: rgba(255,255,255,0.4);
+      line-height: 1.7; max-width: 28ch;
+    }
+    .footer-col h4 {
+      font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--sand); margin-bottom: 1.5rem;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+    .footer-col ul a {
+      font-size: 0.88rem; color: rgba(255,255,255,0.45);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .footer-col ul a:hover { color: var(--white); }
+    .footer-bottom {
+      display: flex; justify-content: space-between; align-items: center;
+      padding-top: 2rem;
+    }
+    .footer-copy { font-size: 0.78rem; color: rgba(255,255,255,0.3); }
+    .footer-socials { display: flex; gap: 1rem; }
+    .social-btn {
+      width: 36px; height: 36px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .social-btn:hover { background: var(--teal); }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .about, .location-section { grid-template-columns: 1fr; }
+      .rooms-grid { grid-template-columns: 1fr 1fr; }
+      .room-card:first-child { grid-column: span 2; grid-row: span 1; }
+      .room-card:first-child .room-visual { min-height: 280px; }
+      .exp-grid, .testimonials-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .about-content { padding: 4rem 2rem; }
+      .location-content { padding: 4rem 2rem; }
+      nav { padding: 1rem 4vw; }
+      .nav-links { display: none; }
+      .booking-bar { flex-wrap: wrap; }
+      .booking-field { min-width: 50%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <a href="#" class="nav-logo">Nyanza Pearl<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#rooms">Rooms</a></li>
+      <li><a href="#experiences">Experiences</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="nav-book">Book Now</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-bg"></div>
+    <div class="hero-water">
+      <div class="wave wave-1"></div>
+      <div class="wave wave-2"></div>
+      <div class="wave wave-3"></div>
+    </div>
+    <div class="particles" id="particles"></div>
+
+    <div class="hero-eyebrow">Kisumu, Kenya · Lake Victoria</div>
+    <h1 class="hero-title">
+      Where the<br>
+      Lake <em>Meets Luxury</em>
+    </h1>
+    <p class="hero-sub">
+      Nestled on the shores of Lake Victoria, Nyanza Pearl Lodge offers an unforgettable escape into the heart of Western Kenya's natural splendour.
+    </p>
+    <div class="hero-ctas">
+      <a href="#rooms" class="btn-gold">Explore Rooms</a>
+      <a href="#experiences" class="btn-ghost">Our Experiences</a>
+    </div>
+
+    <!-- Booking Bar -->
+    <div class="booking-bar">
+      <div class="booking-field">
+        <label>Check In</label>
+        <input type="date" />
+      </div>
+      <div class="booking-field">
+        <label>Check Out</label>
+        <input type="date" />
+      </div>
+      <div class="booking-field">
+        <label>Guests</label>
+        <select>
+          <option>1 Guest</option>
+          <option>2 Guests</option>
+          <option>3 Guests</option>
+          <option>4+ Guests</option>
+        </select>
+      </div>
+      <div class="booking-field">
+        <label>Room Type</label>
+        <select>
+          <option>Any Room</option>
+          <option>Lake View Suite</option>
+          <option>Deluxe Room</option>
+          <option>Garden Cottage</option>
+        </select>
+      </div>
+      <button class="booking-btn">Check Availability</button>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="about-visual">
+      <div class="about-visual-inner">
+        <span class="about-visual-icon">🌊</span>
+        <div class="about-visual-quote">"The lake whispers stories of ancient kingdoms and modern dreams."</div>
+        <div class="about-visual-attr">— Nyanza Pearl Lodge</div>
+      </div>
+    </div>
+    <div class="about-content">
+      <div class="eyebrow reveal">Our Story</div>
+      <h2 class="section-title reveal">A Lakeside Sanctuary <em>Like No Other</em></h2>
+      <div class="reveal">
+        <p>Founded in 2010, <strong>Nyanza Pearl Lodge</strong> was born from a vision to share the breathtaking beauty of Lake Victoria with the world. Situated just minutes from Kisumu city centre, our lodge blends <strong>contemporary comfort with authentic Luo culture</strong>.</p>
+        <p>Every corner of our property has been designed to frame the magnificent lake — from sunrise breakfasts on the waterfront terrace to sundowner cocktails watching fishermen return with their catch.</p>
+      </div>
+      <div class="about-stats reveal">
+        <div>
+          <div class="about-stat-num">14+</div>
+          <div class="about-stat-label">Years of Hospitality</div>
+        </div>
+        <div>
+          <div class="about-stat-num">42</div>
+          <div class="about-stat-label">Luxury Rooms & Suites</div>
+        </div>
+        <div>
+          <div class="about-stat-num">4.9★</div>
+          <div class="about-stat-label">Guest Rating</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROOMS -->
+  <section id="rooms">
+    <div class="rooms-header">
+      <div>
+        <div class="eyebrow reveal">Accommodation</div>
+        <h2 class="section-title reveal">Rooms & <em>Suites</em></h2>
+      </div>
+      <a href="#contact" class="btn-gold reveal">Book a Room</a>
+    </div>
+
+    <div class="rooms-grid">
+      <div class="room-card reveal">
+        <div class="room-visual">
+          <div class="room-bg room-bg-1"></div>
+          <div class="room-emoji">🌅</div>
+          <div class="room-overlay"></div>
+          <div class="room-info">
+            <div class="room-type">Presidential Suite</div>
+            <div class="room-name">Victoria Penthouse Suite</div>
+            <div class="room-price">From <strong>KES 28,000</strong> / night</div>
+          </div>
+        </div>
+      </div>
+      <div class="room-card reveal reveal-delay-1">
+        <div class="room-visual">
+          <div class="room-bg room-bg-2"></div>
+          <div class="room-emoji">🛏️</div>
+          <div class="room-overlay"></div>
+          <div class="room-info">
+            <div class="room-type">Superior Room</div>
+            <div class="room-name">Lake View Deluxe</div>
+            <div class="room-price">From <strong>KES 14,000</strong> / night</div>
+          </div>
+        </div>
+      </div>
+      <div class="room-card reveal reveal-delay-2">
+        <div class="room-visual">
+          <div class="room-bg room-bg-3"></div>
+          <div class="room-emoji">🌿</div>
+          <div class="room-overlay"></div>
+          <div class="room-info">
+            <div class="room-type">Garden Suite</div>
+            <div class="room-name">Papyrus Garden Suite</div>
+            <div class="room-price">From <strong>KES 16,500</strong> / night</div>
+          </div>
+        </div>
+      </div>
+      <div class="room-card reveal reveal-delay-1">
+        <div class="room-visual">
+          <div class="room-bg room-bg-4"></div>
+          <div class="room-emoji">🪟</div>
+          <div class="room-overlay"></div>
+          <div class="room-info">
+            <div class="room-type">Classic Room</div>
+            <div class="room-name">Standard Comfort Room</div>
+            <div class="room-price">From <strong>KES 8,500</strong> / night</div>
+          </div>
+        </div>
+      </div>
+      <div class="room-card reveal reveal-delay-2">
+        <div class="room-visual">
+          <div class="room-bg room-bg-5"></div>
+          <div class="room-emoji">🏡</div>
+          <div class="room-overlay"></div>
+          <div class="room-info">
+            <div class="room-type">Family Villa</div>
+            <div class="room-name">Lakeside Family Villa</div>
+            <div class="room-price">From <strong>KES 22,000</strong> / night</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AMENITIES -->
+  <section class="amenities" id="amenities">
+    <div class="eyebrow reveal">What We Offer</div>
+    <h2 class="section-title reveal">World-Class <em>Amenities</em></h2>
+    <div class="amenities-grid">
+      <div class="amenity-item reveal">
+        <span class="amenity-icon">🍽️</span>
+        <div class="amenity-name">Waterfront Restaurant</div>
+        <div class="amenity-desc">Fresh Nile perch, tilapia, and authentic Kenyan cuisine with panoramic lake views.</div>
+      </div>
+      <div class="amenity-item reveal reveal-delay-1">
+        <span class="amenity-icon">🏊</span>
+        <div class="amenity-name">Infinity Pool</div>
+        <div class="amenity-desc">An infinity pool that merges seamlessly with the horizon of Lake Victoria.</div>
+      </div>
+      <div class="amenity-item reveal reveal-delay-2">
+        <span class="amenity-icon">💆</span>
+        <div class="amenity-name">Pearl Spa & Wellness</div>
+        <div class="amenity-desc">Traditional Luo healing rituals and modern wellness treatments.</div>
+      </div>
+      <div class="amenity-item reveal">
+        <span class="amenity-icon">📶</span>
+        <div class="amenity-name">High-Speed WiFi</div>
+        <div class="amenity-desc">Fiber-optic connectivity across all rooms and common areas.</div>
+      </div>
+      <div class="amenity-item reveal reveal-delay-1">
+        <span class="amenity-icon">🚤</span>
+        <div class="amenity-name">Private Boat Jetty</div>
+        <div class="amenity-desc">Our private dock for fishing excursions, sunset cruises and island hops.</div>
+      </div>
+      <div class="amenity-item reveal reveal-delay-2">
+        <span class="amenity-icon">🍸</span>
+        <div class="amenity-name">Sundowner Bar</div>
+        <div class="amenity-desc">Craft cocktails and local brews served as the sun dips below Lake Victoria.</div>
+      </div>
+      <div class="amenity-item reveal">
+        <span class="amenity-icon">🏋️</span>
+        <div class="amenity-name">Fitness Centre</div>
+        <div class="amenity-desc">Fully equipped gym with lake-facing cardio equipment.</div>
+      </div>
+      <div class="amenity-item reveal reveal-delay-1">
+        <span class="amenity-icon">🎪</span>
+        <div class="amenity-name">Conference Facilities</div>
+        <div class="amenity-desc">Modern meeting rooms for corporate events, weddings, and retreats.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCES -->
+  <section class="experiences" id="experiences">
+    <div class="eyebrow reveal">Activities</div>
+    <h2 class="section-title reveal">Curated <em>Experiences</em></h2>
+
+    <div class="exp-grid">
+      <div class="exp-card reveal">
+        <div class="exp-visual exp-v1">🚣</div>
+        <div class="exp-body">
+          <div class="exp-name">Lake Victoria Sunset Cruise</div>
+          <p class="exp-desc">Glide across Africa's largest lake as the sun paints the water gold. Our traditional wooden dhow carries you through the evening light while our guide shares the legends of the Luo people.</p>
+          <span class="exp-tag">From KES 3,500 / person</span>
+        </div>
+      </div>
+      <div class="exp-card reveal reveal-delay-1">
+        <div class="exp-visual exp-v2">🦅</div>
+        <div class="exp-body">
+          <div class="exp-name">Impala Sanctuary Bird Walk</div>
+          <p class="exp-desc">Kisumu Impala Sanctuary is home to over 350 bird species. Our expert ornithologist guides you at dawn through papyrus wetlands and acacia woodland for an unforgettable experience.</p>
+          <span class="exp-tag">From KES 2,000 / person</span>
+        </div>
+      </div>
+      <div class="exp-card reveal reveal-delay-2">
+        <div class="exp-visual exp-v3">🎣</div>
+        <div class="exp-body">
+          <div class="exp-name">Traditional Fishing Excursion</div>
+          <p class="exp-desc">Join local fishermen at sunrise for an authentic experience on the lake. Learn centuries-old fishing techniques and bring your catch back for our chef to prepare for your dinner.</p>
+          <span class="exp-tag">From KES 4,500 / person</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials">
+    <div class="eyebrow reveal">Guest Reviews</div>
+    <h2 class="section-title reveal">What Our <em>Guests Say</em></h2>
+
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">Waking up to Lake Victoria every morning was an experience I'll never forget. The staff were warm, the food was exceptional, and the sunset cruise was magical.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">👤</div>
+          <div>
+            <div class="testimonial-name">Sarah M.</div>
+            <div class="testimonial-origin">Nairobi, Kenya</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-1">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">The Victoria Penthouse Suite was breathtaking. We held our anniversary dinner on the terrace and it was perfect. Nyanza Pearl has raised the bar for hospitality in East Africa.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">👤</div>
+          <div>
+            <div class="testimonial-name">James & Anika O.</div>
+            <div class="testimonial-origin">Lagos, Nigeria</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-2">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">The fishing excursion at dawn was a highlight of our whole Kenya trip. The lodge feels authentic, luxurious, and deeply connected to the local culture. We will definitely return.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">👤</div>
+          <div>
+            <div class="testimonial-name">Thomas B.</div>
+            <div class="testimonial-origin">London, UK</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCATION -->
+  <section class="location-section" id="location" style="padding:0;">
+    <div class="location-map">
+      <div class="map-graphic">
+        <div class="map-pin">📍</div>
+        <div class="map-label">Kisumu, Kenya</div>
+        <div class="map-sublabel">On the shores of Lake Victoria</div>
+      </div>
+    </div>
+    <div class="location-content">
+      <div class="eyebrow reveal">Find Us</div>
+      <h2 class="section-title reveal">Getting <em>Here</em></h2>
+      <p class="reveal">Located just 8 minutes from Kisumu International Airport and 5 minutes from Kisumu CBD, Nyanza Pearl Lodge is perfectly positioned for both leisure and business travellers.</p>
+      <ul class="directions-list reveal">
+        <li>
+          <div class="dir-icon">✈️</div>
+          <div class="dir-text">
+            <strong>By Air</strong>
+            8 min from Kisumu International Airport — complimentary airport transfers available
+          </div>
+        </li>
+        <li>
+          <div class="dir-icon">🚗</div>
+          <div class="dir-text">
+            <strong>By Road</strong>
+            5 min from Kisumu CBD via Oginga Odinga Street — ample secure parking on site
+          </div>
+        </li>
+        <li>
+          <div class="dir-icon">🚤</div>
+          <div class="dir-text">
+            <strong>By Boat</strong>
+            Direct boat transfers available from Mbita, Homa Bay, and Kendu Bay
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact-section" id="contact">
+    <div class="eyebrow reveal">Get in Touch</div>
+    <h2 class="section-title reveal">Make a <em>Reservation</em></h2>
+
+    <div class="contact-grid">
+      <div class="contact-details reveal">
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <div class="contact-item-label">Address</div>
+            <div class="contact-item-value">Lakeside Drive, Off Oginga Odinga St<br>Kisumu, Kenya</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div>
+            <div class="contact-item-label">Phone</div>
+            <div class="contact-item-value">+254 700 123 456</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">✉️</div>
+          <div>
+            <div class="contact-item-label">Email</div>
+            <div class="contact-item-value">reservations@nyanzapearl.co.ke</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🕐</div>
+          <div>
+            <div class="contact-item-label">Reception Hours</div>
+            <div class="contact-item-value">Open 24 hours, 7 days a week</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form reveal">
+        <div class="form-row">
+          <div class="form-field">
+            <label class="form-label">First Name</label>
+            <input class="form-input" type="text" placeholder="Your first name" />
+          </div>
+          <div class="form-field">
+            <label class="form-label">Last Name</label>
+            <input class="form-input" type="text" placeholder="Your last name" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label class="form-label">Email</label>
+            <input class="form-input" type="email" placeholder="your@email.com" />
+          </div>
+          <div class="form-field">
+            <label class="form-label">Phone</label>
+            <input class="form-input" type="tel" placeholder="+254 700 000 000" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label class="form-label">Check In</label>
+            <input class="form-input" type="date" />
+          </div>
+          <div class="form-field">
+            <label class="form-label">Check Out</label>
+            <input class="form-input" type="date" />
+          </div>
+        </div>
+        <div class="form-field">
+          <label class="form-label">Room Type</label>
+          <select class="form-select">
+            <option>Select a room type</option>
+            <option>Victoria Penthouse Suite</option>
+            <option>Lake View Deluxe</option>
+            <option>Papyrus Garden Suite</option>
+            <option>Standard Comfort Room</option>
+            <option>Lakeside Family Villa</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label class="form-label">Special Requests</label>
+          <textarea class="form-textarea" placeholder="Any special requests or notes..."></textarea>
+        </div>
+        <button class="form-submit" id="submitBtn">Request Reservation →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo">Nyanza Pearl<span>.</span></div>
+        <p>A luxury lakeside lodge on the shores of Lake Victoria, Kisumu. Where African beauty meets world-class hospitality.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Rooms</h4>
+        <ul>
+          <li><a href="#">Penthouse Suite</a></li>
+          <li><a href="#">Lake View Deluxe</a></li>
+          <li><a href="#">Garden Suite</a></li>
+          <li><a href="#">Family Villa</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Experiences</h4>
+        <ul>
+          <li><a href="#">Sunset Cruise</a></li>
+          <li><a href="#">Bird Walking</a></li>
+          <li><a href="#">Fishing Trips</a></li>
+          <li><a href="#">Spa & Wellness</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Info</h4>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Gallery</a></li>
+          <li><a href="#">Events</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 Nyanza Pearl Lodge. All rights reserved. · Kisumu, Kenya</div>
+      <div class="footer-socials">
+        <a href="#" class="social-btn">📘</a>
+        <a href="#" class="social-btn">📸</a>
+        <a href="#" class="social-btn">🐦</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Nav scroll
+    const nav = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -50px 0px' });
+    reveals.forEach(el => observer.observe(el));
+
+    // Floating particles
+    const container = document.getElementById('particles');
+    for (let i = 0; i < 18; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      p.style.cssText = `
+        left: ${Math.random() * 100}%;
+        width: ${Math.random() * 3 + 1}px;
+        height: ${Math.random() * 3 + 1}px;
+        animation-duration: ${Math.random() * 10 + 8}s;
+        animation-delay: ${Math.random() * 8}s;
+      `;
+      container.appendChild(p);
+    }
+
+    // Form submit
+    document.getElementById('submitBtn').addEventListener('click', function() {
+      this.textContent = 'Reservation Sent! ✓';
+      this.style.background = '#2a9aa6';
+      setTimeout(() => {
+        this.textContent = 'Request Reservation →';
+        this.style.background = '';
+      }, 3000);
+    });
+  </script>
+</body>
+</html>
